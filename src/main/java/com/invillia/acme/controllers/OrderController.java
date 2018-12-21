@@ -4,6 +4,7 @@ import com.invillia.acme.dtos.OrderDto;
 import com.invillia.acme.dtos.mappers.OrderDtoMapper;
 import com.invillia.acme.entities.OrderStatus;
 import com.invillia.acme.services.OrderService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,8 @@ public class OrderController {
     public ResponseEntity findByParameters(
             @RequestParam(required = false) String address,
             @RequestParam(required = false) OrderStatus status,
-            @RequestParam(required = false) LocalDateTime confirmationDate) {
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                    LocalDateTime confirmationDate) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(
                         orderService.findByParameters(address, status, confirmationDate)
