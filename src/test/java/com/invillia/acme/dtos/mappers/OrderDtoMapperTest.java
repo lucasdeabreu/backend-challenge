@@ -4,14 +4,9 @@ import com.invillia.acme.dtos.OrderDto;
 import com.invillia.acme.dtos.OrderItemDto;
 import com.invillia.acme.entities.Order;
 import com.invillia.acme.entities.OrderItem;
-import com.invillia.acme.entities.OrderStatus;
+import com.invillia.acme.utils.OrderSampleData;
 import org.junit.Test;
 import org.mapstruct.factory.Mappers;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -22,14 +17,7 @@ public class OrderDtoMapperTest {
     @Test
     public void shouldMapOrderToDto() {
 
-        Order order = Order.builder()
-                .id(1L)
-                .address("St. I really don't know")
-                .confirmationDate(LocalDateTime.now())
-                .status(OrderStatus.NEW)
-                .items(getOrderItems())
-                .build();
-
+        Order order = OrderSampleData.getOrderSample();
         OrderDto dto = mapper.orderToDto(order);
 
         assertNotNull(dto);
@@ -51,13 +39,7 @@ public class OrderDtoMapperTest {
     @Test
     public void shouldMapDtoToOrder() {
 
-        OrderDto dto = OrderDto.builder()
-                .address("St. I really don't know")
-                .confirmationDate(LocalDateTime.now())
-                .status(OrderStatus.NEW)
-                .items(getOrderItemsDto())
-                .build();
-
+        OrderDto dto = OrderSampleData.getOrderDtoSample();
         Order order = mapper.dtoToOrder(dto);
 
         assertNotNull(order);
@@ -80,37 +62,4 @@ public class OrderDtoMapperTest {
             assertEquals(order, item.getOrder());
         }
     }
-
-    private List<OrderItem> getOrderItems() {
-        return Arrays.asList(
-                OrderItem.builder()
-                        .id(1L)
-                        .description("Macbook $$")
-                        .unitPrice(BigDecimal.ONE)
-                        .quantity(10)
-                        .build(),
-                OrderItem.builder()
-                        .id(1L)
-                        .description("Hiphone Xzy")
-                        .unitPrice(BigDecimal.TEN)
-                        .quantity(1)
-                        .build()
-        );
-    }
-
-    private List<OrderItemDto> getOrderItemsDto() {
-        return Arrays.asList(
-                OrderItemDto.builder()
-                        .description("Macbook $$")
-                        .unitPrice(BigDecimal.ONE)
-                        .quantity(10)
-                        .build(),
-                OrderItemDto.builder()
-                        .description("Hiphone Xzy")
-                        .unitPrice(BigDecimal.TEN)
-                        .quantity(1)
-                        .build()
-        );    }
-
-
 }
