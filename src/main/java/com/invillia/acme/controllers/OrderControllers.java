@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 
 @RestController
 @RequestMapping("/orders")
@@ -31,6 +30,8 @@ public class OrderControllers {
             @RequestParam(required = false) OrderStatus status,
             @RequestParam(required = false) LocalDateTime confirmationDate) {
         return ResponseEntity.status(HttpStatus.OK)
-                .body(Collections.emptyList());
+                .body(
+                        orderService.findByParameters(address, status, confirmationDate)
+                );
     }
 }
