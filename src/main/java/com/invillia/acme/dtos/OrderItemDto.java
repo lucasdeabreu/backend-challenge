@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@EqualsAndHashCode(exclude = {"id"})
 public class OrderItemDto {
 
     private Long id;
