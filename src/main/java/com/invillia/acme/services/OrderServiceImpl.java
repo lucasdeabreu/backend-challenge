@@ -3,10 +3,13 @@ package com.invillia.acme.services;
 import com.invillia.acme.entities.Order;
 import com.invillia.acme.entities.OrderStatus;
 import com.invillia.acme.repositories.OrderRepository;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static com.invillia.acme.repositories.specifications.OrderSpecification.*;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -24,6 +27,12 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> findByParameters(String address, OrderStatus status, LocalDateTime confirmationDate) {
-        return orderRepository.findByParameters(address, status, confirmationDate);
+
+        Specification<Order> spec = Specification
+                .where(addressContains(address))
+                .and(statusEqualsTo(status))
+                .and(confirmationDateEqualsTo(confirmationDate))
+                .and(fetchItems());
+        return orderRepository.findAll(spec);
     }
 }
