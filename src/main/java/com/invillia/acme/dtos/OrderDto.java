@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 public class OrderDto {
 
+    private Long id;
+
     private String address;
 
     private LocalDateTime confirmationDate;
