@@ -4,6 +4,8 @@ import com.invillia.acme.dtos.OrderDto;
 import com.invillia.acme.dtos.mappers.OrderDtoMapper;
 import com.invillia.acme.entities.OrderStatus;
 import com.invillia.acme.services.OrderService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orders")
+@Api(value="store", description="Actions related to Order Service")
 public class OrderController {
 
     private final OrderService orderService;
@@ -24,6 +27,7 @@ public class OrderController {
         this.mapper = mapper;
     }
 
+    @ApiOperation(value = "Create an Order")
     @PostMapping
     public ResponseEntity create(@RequestBody OrderDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
@@ -31,6 +35,7 @@ public class OrderController {
         );
     }
 
+    @ApiOperation(value = "Find Orders by parameters")
     @GetMapping
     public ResponseEntity findByParameters(
             @RequestParam(required = false) String address,
