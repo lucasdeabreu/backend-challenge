@@ -10,3 +10,33 @@ services:
       MYSQL_DATABASE: invilliaDB
       MYSQL_USER: invillia
       MYSQL_PASSWORD: invillia
+  config-server:
+    container_name: config-server
+    build: ./config-server
+    ports:
+      - "8888:8888"
+      - "18787:8787"
+  registry-server:
+    container_name: registry-server
+    build: ./registry-server
+    ports:
+      - "8761:8761"
+      - "28787:8787"
+    depends_on:
+      - config-server
+  gateway-server:
+    container_name: gateway-server
+    build: ./gateway-server
+    ports:
+      - "8080:8080"
+      - "49797:8787"
+    depends_on:
+      - config-server
+  order-service:
+    container_name: order-service
+    build: ./order-service
+    ports:
+      - "8181:8181"
+      - "39797:8787"
+    depends_on:
+      - config-server

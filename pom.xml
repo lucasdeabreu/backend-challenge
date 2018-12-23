@@ -17,7 +17,7 @@
 		<module>config-server</module>
 		<module>registry-server</module>
 		<module>order-service</module>
-		<module>gateway-service</module>
+		<module>gateway-server</module>
 	</modules>
 
 </project>
