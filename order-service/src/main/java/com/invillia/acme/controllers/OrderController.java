@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class OrderController {
 
     @ApiOperation(value = "Create an Order")
     @PostMapping
-    public ResponseEntity create(@RequestBody OrderDto dto) {
+    public ResponseEntity create(@RequestBody @Valid OrderDto dto) {
         return ResponseEntity.status(HttpStatus.CREATED).body(
                 mapper.orderToDto(orderService.save(mapper.dtoToOrder(dto)))
         );
