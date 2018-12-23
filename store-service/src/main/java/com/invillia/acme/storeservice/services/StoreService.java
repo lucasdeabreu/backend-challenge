@@ -8,4 +8,6 @@ public interface StoreService {
     Store save(Store store);
 
     List<Store> findAllByParameters(String name, String address);
+
+    Store update(Long storeId, Store store);
 }
