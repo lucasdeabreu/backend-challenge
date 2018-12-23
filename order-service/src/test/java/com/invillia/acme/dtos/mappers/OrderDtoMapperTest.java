@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 public class OrderDtoMapperTest {
 
-    public final OrderDtoMapper mapper = Mappers.getMapper(OrderDtoMapper.class);
+    private final OrderDtoMapper mapper = Mappers.getMapper(OrderDtoMapper.class);
 
     @Test
     public void shouldMapOrderToDto() {
