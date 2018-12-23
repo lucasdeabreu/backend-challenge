@@ -25,6 +25,7 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.save(order);
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<Order> findByParameters(String address, OrderStatus status, LocalDateTime confirmationDate) {
 
