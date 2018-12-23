@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/orders")
-@Api(value="store", description="Actions related to Order Service")
+@Api(value="order", description="Actions related to Order Service")
 public class OrderController {
 
     private final OrderService orderService;
