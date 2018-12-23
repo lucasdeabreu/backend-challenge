@@ -5,9 +5,9 @@ import com.invillia.acme.storeservice.entities.Store;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public abstract class StoreDtoMapper {
+public interface StoreDtoMapper {
 
-    public abstract Store dtoToOrder(StoreDto dto);
+    Store dtoToStore(StoreDto dto);
 
-    public abstract StoreDto orderToDto(Store store);
+    StoreDto storeToDto(Store store);
 }
