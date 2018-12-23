@@ -18,6 +18,7 @@
 		<module>registry-server</module>
 		<module>order-service</module>
 		<module>gateway-server</module>
+		<module>store-service</module>
 	</modules>
 
 </project>
