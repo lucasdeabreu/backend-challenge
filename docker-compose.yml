@@ -50,3 +50,11 @@ services:
       - "39797:8787"
     depends_on:
       - config-server
+  store-service:
+    container_name: store-service
+    build: ./store-service
+    ports:
+      - "8282:8282"
+      - "49797:8787"
+    depends_on:
+      - config-server
